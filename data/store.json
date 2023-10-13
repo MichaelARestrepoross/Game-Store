@@ -1,42 +1,42 @@
 [
   {
     "name": "Portal",
-    "QRID": "ABCD",
+    "qrID": "ABCD",
     "price_in_cents": 2999,
     "released": true,
     "age_rating": "E"
   },
   {
     "name": "Portal 2",
-    "QRID": "EFGH",
+    "qrID": "EFGH",
     "price_in_cents": 2499,
     "released": true,
     "age_rating": "T"
   },
   {
     "name": "The Last of Us",
-    "QRID": "IJKL",
+    "qrID": "IJKL",
     "price_in_cents": 1999,
     "released": true,
     "age_rating": "M"
   },
   {
     "name": "Cyberpunk 2077",
-    "QRID": "MNOP",
+    "qrID": "MNOP",
     "price_in_cents": 3499,
     "released": true,
     "age_rating": "M"
   },
   {
-    "name": "Baldur's Gate 3",
-    "QRID": "QRST",
-    "price_in_cents": 2999,
+    "name": "hello",
+    "qrID": "QRST",
+    "price_in_cents": 10,
     "released": true,
     "age_rating": "T"
   },
   {
     "name": "Baldur's Gate 2",
-    "id": "iTyR",
+    "qrID": "o4Wv",
     "price_in_cents": 2000,
     "released": false,
     "age_rateing": "M"

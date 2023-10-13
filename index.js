@@ -1,6 +1,6 @@
 const { readJSONFile, writeJSONFile } = require('./src/helpers');
 const games = readJSONFile('./data', 'store.json');
-const {create} = require("./src/storeController");
+const {create,deleteGame,update} = require("./src/storeController");
 // create an alias called inform to store the console.log function
 // When providing user feedback in the terminal use `inform`
 // When developing/debugging use `console.log`
@@ -26,10 +26,12 @@ function run() {
       print(action, gamesInput);
       break;
     case 'update':
-      print(action, gamesInput);
-      break;
-    case 'destroy':
-      print(action, gamesInput);
+        updatedStore = update(games, gamesInput,realesedInput,age_rateing);
+        writeToFile = true;
+        break;
+    case 'deleteGame':
+      updatedStore = deleteGame(games, gamesInput);
+      writeToFile = true;
       break;
     case 'cart':
       print(action);
