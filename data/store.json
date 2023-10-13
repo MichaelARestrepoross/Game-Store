@@ -30,7 +30,7 @@
   {
     "name": "hello",
     "qrID": "QRST",
-    "price_in_cents": 10,
+    "price_in_cents": 6000,
     "released": true,
     "age_rating": "T"
   },

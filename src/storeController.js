@@ -30,7 +30,7 @@ function create(store, gameName,Released,age_rat) {
     if (index > -1) {
         store[index].qrID = qrID2;
         store[index].name = newGame;
-        store[index].price_in_cents = gamePrice[newGame] || 10;
+        store[index].price_in_cents = gamePrice[newGame] || 6000;
         if(realesedInput){
             store[index].released = true;
         }else{
@@ -46,9 +46,15 @@ function create(store, gameName,Released,age_rat) {
     }
   }
 
+function searchByID(store, qrID2) {
+    const game = store.find((game) => game.qrID === qrID2);
+    return 'qrID:'+game.qrID + '  Name:' + game.name + '  Rating:'+ game.age_rating+ '  price: $' + game.price_in_cents/100 ;
+  }
+
 
 module.exports = {
     create,
     deleteGame,
-    update
+    update,
+    searchByID
 };
