@@ -8,7 +8,9 @@ const print = console.log;
 
 function run() {
   let writeToFile = false;
+  let writeTOCart = false;
   let updatedStore = [];
+  let updatedCart =[];
 
   const action = process.argv[2];
   const gamesInput = process.argv[3];
@@ -34,11 +36,20 @@ function run() {
       updatedStore = deleteGame(games, gamesInput);
       writeToFile = true;
       break;
-    case 'cart':
+    case 'AddTocart':
       print(action);
       break;
+    case 'showCart':
+      //showCart()  
+      /* maybe use while loop to add to array that has accumulator useing proccess.argsv[accumulator]
+       to continue add games to the cart and show final price at the end where they will ether type
+        buy or cancel to exit*/
+      break;  
     default:
       print('There was an error.');
+  }
+  if (writeToFile) {
+    writeJSONFile('./data', 'store.json', updatedStore);
   }
   if (writeToFile) {
     writeJSONFile('./data', 'store.json', updatedStore);
