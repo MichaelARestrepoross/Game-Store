@@ -3,7 +3,7 @@ const games = readJSONFile('./data', 'store.json');
 const cartFile = readJSONFile('./data','cart.json');
 const customers = readJSONFile('./data', 'balance.json');
 
-const {create,deleteGame,update, searchByID,addToCart,removeFromCart,viewCart,addCustomer,removeCustomer,addBalance} = require("./src/storeController");
+const {create,deleteGame,update, searchByID,addToCart,removeFromCart,viewCart,addCustomer,removeCustomer,addBalance, checkout} = require("./src/storeController");
 // create an alias called inform to store the console.log function
 // When providing user feedback in the terminal use `inform`
 // When developing/debugging use `console.log`
@@ -66,6 +66,24 @@ function run() {
     case 'addBalance':
         updatedBalance = addBalance(customers,gamesInput,realesedInput);// customers file, customerID, amount of $
         writeToBalance = true;
+        break;
+    case 'checkout':
+        const { updatedCustomer, updatedCart, checkoutSuccessful } = checkout(cartFile, customers, gamesInput);
+        if(checkoutSuccessful){
+        const customerIndex = customers.findIndex((customer) => customer.id === gamesInput);
+            if(customerIndex !== -1) {
+                updatedBalance = [...customers];
+                updatedBalance[customerIndex] = updatedCustomer;
+                // console.log("Updated Customer:", updatedCustomer);
+                // console.log("Updated Cart:", updatedCart);
+                writeToBalance = true // Update the customer's balance
+                writeToCart =true; // Only update the cart if checkout was successful
+            }else {
+                print("Customer not found.");
+            }
+        }else {
+        print("Checkout was not successful.");
+        }
         break;
     default:
         print('There was an error.');

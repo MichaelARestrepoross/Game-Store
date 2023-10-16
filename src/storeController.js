@@ -139,12 +139,58 @@ let customers = readJSONFile('./data','balance.json')
     }
     return customers;
   }
+  
+  function checkout(cart, customers, customerId) {
+    const customerIndex = customers.findIndex((customer) => customer.id === customerId);
 
-  function checkOut(cart,customer){
+    if (customerIndex !== -1) {
+        const customer = customers[customerIndex];
+        let updatedCustomer = { ...customer };
+        let updatedCart = [...cart]; // Create a copy of the cart 
+        let discountedPrice = 0; 
+        let checkoutSuccessful = false; 
 
-  }
+        const totalPrice = calculateTotalPrice(cart);
+        // Print customer's name and ID
+        print(`Customer: ${customer.name} (ID: ${customer.id})`);
+        viewCart(cart);
+        print('\n');
 
+        print(`Balance before checkout: $${(customer.balanceInCents / 100).toFixed(2)}`);
+        print(`Total Price: $${totalPrice.toFixed(2)}`);
 
+        if (customer.member) {
+            print("Customer has a membership and receives a 10% discount.");
+            const discount = totalPrice * 0.10;
+            discountedPrice = totalPrice - discount; // Update discountedPrice
+            print(`Discounted Price: $${discountedPrice.toFixed(2)}`);
+        }else{
+            discountedPrice = totalPrice;
+        }
+        
+        if (customer.balanceInCents >= Math.round(discountedPrice * 100)) {
+            // Customer has enough balance, process the checkout
+            customer.balanceInCents -= Math.round(discountedPrice * 100);
+            print(`Checkout successful. Remaining balance: $${(customer.balanceInCents / 100).toFixed(2)}`);
+            updatedCustomer = customer;
+            checkoutSuccessful = true; // Update checkoutSuccessful flag
+            updatedCart =[];
+        } else {
+            print("Insufficient balance to complete the checkout.");
+            checkoutSuccessful = false; // Set checkoutSuccessful to false
+        }
+
+        print("checkoutSuccessful: " + checkoutSuccessful); // Add this line to print the value of checkoutSuccessful
+
+        return { updatedCustomer, updatedCart, checkoutSuccessful };
+    } else {
+        print("Customer not found.");
+        return { updatedCustomer: null, updatedCart: cart, checkoutSuccessful: false };
+    }
+}
+
+  
+  
 module.exports = {
     create,
     deleteGame,
@@ -155,5 +201,6 @@ module.exports = {
     viewCart,
     addCustomer,
     removeCustomer,
-    addBalance
+    addBalance,
+    checkout
 };

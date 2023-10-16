@@ -14,7 +14,8 @@
     "showCart": "node index.js showCart",
     "addCustomer": "node index.js addCustomer",
     "removeCustomer": "node index.js removeCustomer",
-    "addBalance": "node index.js addBalance"
+    "addBalance": "node index.js addBalance",
+    "checkout": "node index.js checkout"
   },
   "keywords": [],
   "author": "",
