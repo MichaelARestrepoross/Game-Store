@@ -1,8 +1,9 @@
 const { readJSONFile, writeJSONFile } = require('./src/helpers');
 const games = readJSONFile('./data', 'store.json');
 const cartFile = readJSONFile('./data','cart.json');
+const customers = readJSONFile('./data', 'balance.json');
 
-const {create,deleteGame,update, searchByID,addToCart,removeFromCart,viewCart} = require("./src/storeController");
+const {create,deleteGame,update, searchByID,addToCart,removeFromCart,viewCart,addCustomer} = require("./src/storeController");
 // create an alias called inform to store the console.log function
 // When providing user feedback in the terminal use `inform`
 // When developing/debugging use `console.log`
@@ -10,9 +11,11 @@ const print = console.log;
 
 function run() {
   let writeToFile = false;
-  let writeTOCart = false;
+  let writeToCart = false;
+  let writeToBalance =false;
   let updatedStore = [];
   let updatedCart =[];
+  let updatedBalance =[];
 
   const action = process.argv[2];
   const gamesInput = process.argv[3];
@@ -31,11 +34,10 @@ function run() {
         print(searchgame);
         break;
     case 'update':
-        print(process.argv)
-        const [, , cmd ,ID,name,realesed, rating] = process.argv;
-        [updatedStore, updatedCart] = update(games, cartFile, ID, name, realesed,rating);
+        const [, , cmd ,id,name,realesed, rating] = process.argv;
+        [updatedStore, updatedCart] = update(games, cartFile, id, name, realesed,rating);
         writeToFile = true;
-        writeTOCart = true;
+        writeToCart = true;
         break;
     case 'deleteGame':
         updatedStore = deleteGame(games, gamesInput);
@@ -43,23 +45,31 @@ function run() {
         break;
     case 'addToCart':
         updatedCart = addToCart(games,gamesInput)
-        writeTOCart = true;
+        writeToCart = true;
         break;
     case 'removeFromCart':
         updatedCart = removeFromCart(cartFile,gamesInput);
-        writeTOCart = true;
+        writeToCart = true;
         break;
     case 'showCart':
         viewCart(cartFile)
         break; 
+    case 'addCustomer':
+        print(process.argv);
+        updatedBalance = addCustomer(customers,gamesInput,realesedInput,age_rating) // action, name ,balance , membership
+        writeToBalance = true;
+        break;
     default:
         print('There was an error.');
   }
   if (writeToFile) {
     writeJSONFile('./data', 'store.json', updatedStore);
   }
-  if (writeTOCart) {
+  if (writeToCart) {
     writeJSONFile('./data', 'cart.json', updatedCart);
+  }
+  if(writeToBalance){
+    writeJSONFile('./data', 'balance.json',updatedBalance);
   }
 }
 

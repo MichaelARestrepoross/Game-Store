@@ -11,7 +11,8 @@
     "deleteGame": "node index.js deleteGame",
     "removeFromCart": "node index.js removeFromCart",
     "addToCart": "node index.js addToCart",
-    "showCart": "node index.js showCart"
+    "showCart": "node index.js showCart",
+    "addCustomer": "node index.js addCustomer"
   },
   "keywords": [],
   "author": "",

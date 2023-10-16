@@ -6,13 +6,14 @@ const { readJSONFile, writeJSONFile } = require('./helpers');
 const cartFile = 'cart.json';
 
 let cart = readJSONFile('./data', cartFile);
+let customers = readJSONFile('./data','balance.json')
 
   function create(store, gameName,Released,age_rat) {
     const game = {
       name: gameName,
       // Limit the id to be 4 characters long by placing a 4 as the argument for nanoid
       qrID: nanoid(4),
-      price_in_cents: gamePrice[gameName] || 6000, // if the game you create does not exist in the resource object of animals, it will be given a default points value of 10
+      price_in_cents: gamePrice[gameName] || 6000, // if the game you create does not exist in the resource object of animals, it will be given a default value of 6000
       released:Released === "true"? true: false,
       age_rateing: age_rat || "E"
     };
@@ -55,7 +56,6 @@ let cart = readJSONFile('./data', cartFile);
         cart[indexCart].released = isReleased;
         cart[indexCart].age_rating = age_rating || "E"
         
-  
         print(cart[indexCart]);
         print('Game successfully updated in the cart');
       }
@@ -83,6 +83,7 @@ let cart = readJSONFile('./data', cartFile);
     }
     return cart; 
   }
+
   function removeFromCart(cart, gameName) {
     const gameIndex = cart.findIndex((game) => game.name === gameName);
     if (gameIndex !== -1) {
@@ -110,7 +111,17 @@ let cart = readJSONFile('./data', cartFile);
       console.log(`Total Price: $${calculateTotalPrice(cart)}`);
     }
   }
-
+  function addCustomer(customers,name,balance, member){
+    const customer = {
+        name: name,
+        // Limit the id to be 4 characters long by placing a 4 as the argument for nanoid
+        id: nanoid(4),
+        balanceInCents: parseInt(balance) || 10000, 
+        member:member === "true"? true: false,
+      };
+      customers.push(customer);
+      return customers;
+  }
 
 
 
@@ -121,5 +132,6 @@ module.exports = {
     searchByID,
     addToCart,
     removeFromCart,
-    viewCart
+    viewCart,
+    addCustomer
 };
