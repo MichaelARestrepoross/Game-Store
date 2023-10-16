@@ -116,13 +116,33 @@ let customers = readJSONFile('./data','balance.json')
         name: name,
         // Limit the id to be 4 characters long by placing a 4 as the argument for nanoid
         id: nanoid(4),
-        balanceInCents: parseInt(balance) || 10000, 
+        balanceInCents: parseInt(balance) || 0, 
         member:member === "true"? true: false,
       };
       customers.push(customer);
       return customers;
   }
+  function removeCustomer(customers, id) {
+    const index = customers.findIndex((customer) => customer.id === id);
+    if (index !== -1) {
+      customers.splice(index, 1); // Remove the customer object from the array
+    } else {
+      console.log("Customer not found.");
+    }
+    return customers;
+  }
 
+  function addBalance(customers, customerId, amountToAdd) {
+    const customerToUpdate = customers.find((customer) => customer.id === customerId);
+    if (customerToUpdate) {
+      customerToUpdate.balanceInCents += parseInt(amountToAdd);
+    }
+    return customers;
+  }
+
+  function checkOut(cart,customer){
+
+  }
 
 
 module.exports = {
@@ -133,5 +153,7 @@ module.exports = {
     addToCart,
     removeFromCart,
     viewCart,
-    addCustomer
+    addCustomer,
+    removeCustomer,
+    addBalance
 };

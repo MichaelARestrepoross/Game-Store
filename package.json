@@ -12,7 +12,9 @@
     "removeFromCart": "node index.js removeFromCart",
     "addToCart": "node index.js addToCart",
     "showCart": "node index.js showCart",
-    "addCustomer": "node index.js addCustomer"
+    "addCustomer": "node index.js addCustomer",
+    "removeCustomer": "node index.js removeCustomer",
+    "addBalance": "node index.js addBalance"
   },
   "keywords": [],
   "author": "",

@@ -1,14 +1,20 @@
 [
   {
     "name": "michael",
-    "id": "mDW6",
-    "balanceInCents": 8000,
+    "id": "ABCD",
+    "balanceInCents": 12000,
     "member": true
   },
   {
-    "name": "michael2",
-    "id": "hMa3",
-    "balanceInCents": 811000,
-    "member": true
+    "name": "alex",
+    "id": "t_Ga",
+    "balanceInCents": 20000,
+    "member": false
+  },
+  {
+    "name": "john",
+    "id": "HQzY",
+    "balanceInCents": 0,
+    "member": false
   }
 ]
