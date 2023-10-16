@@ -9,7 +9,9 @@
     "searchByID": "node index.js searchByID",
     "update": "node index.js update",
     "deleteGame": "node index.js deleteGame",
-    "cart": "node index.js cart"
+    "removeFromCart": "node index.js removeFromCart",
+    "addToCart": "node index.js addToCart",
+    "showCart": "node index.js showCart"
   },
   "keywords": [],
   "author": "",
