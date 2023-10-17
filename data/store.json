@@ -47,5 +47,12 @@
     "price_in_cents": 3999,
     "released": true,
     "age_rateing": "M"
+  },
+  {
+    "name": "portal 3",
+    "qrID": "LWGs",
+    "price_in_cents": 6000,
+    "released": false,
+    "age_rateing": "M"
   }
 ]

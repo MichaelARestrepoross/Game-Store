@@ -8,7 +8,7 @@ const cartFile = 'cart.json';
 let cart = readJSONFile('./data', cartFile);
 let customers = readJSONFile('./data','balance.json')
 
-  function create(store, gameName,Released,age_rat) {
+  function createGame(store, gameName,Released,age_rat) {
     const game = {
       name: gameName,
       // Limit the id to be 4 characters long by placing a 4 as the argument for nanoid
@@ -77,9 +77,9 @@ let customers = readJSONFile('./data','balance.json')
     const game = store.find((game) => game.name === gameName);
     if (game) {
       cart.push(game);
-      console.log(`Added ${game.name} to the cart.`);
+      print(`Added ${game.name} to the cart.`);
     }else {
-      console.log(`Game ${gameName} not found.`);
+      print(`Game ${gameName} not found.`);
     }
     return cart; 
   }
@@ -88,9 +88,9 @@ let customers = readJSONFile('./data','balance.json')
     const gameIndex = cart.findIndex((game) => game.name === gameName);
     if (gameIndex !== -1) {
       cart.splice(gameIndex, 1);
-      console.log(`Removed ${gameName} from the cart.`);
+      print(`Removed ${gameName} from the cart.`);
     } else {
-      console.log(`Game ${gameName} not found in the cart.`);
+      print(`Game ${gameName} not found in the cart.`);
     }
     return cart;
   }
@@ -102,13 +102,13 @@ let customers = readJSONFile('./data','balance.json')
   
   function viewCart(cart){
     if (cart.length === 0) {
-      console.log("Your cart is empty.");
+      print("Your cart is empty.");
     } else {
-      console.log("Cart Contents:");
+      print("Cart Contents:");
       cart.forEach((game) => {
-      console.log(`Name: ${game.name}, Price: $${game.price_in_cents / 100}`);
+      print(`Name: ${game.name}, Price: $${game.price_in_cents / 100}`);
       });
-      console.log(`Total Price: $${calculateTotalPrice(cart)}`);
+      print(`Total Price: $${calculateTotalPrice(cart)}`);
     }
   }
   function addCustomer(customers,name,balance, member){
@@ -130,6 +130,15 @@ let customers = readJSONFile('./data','balance.json')
       console.log("Customer not found.");
     }
     return customers;
+  }
+  function showCustomers(customers) {
+    for (const customer of customers) {
+      print(`Name: ${customer.name}`);
+      print(`ID: ${customer.id}`);
+      print(`Balance: $${(customer.balanceInCents/100).toFixed(2)}`);
+      print(`Member: ${customer.member ? 'Yes' : 'No'}`);
+      print('-----------------------');
+    }
   }
 
   function addBalance(customers, customerId, amountToAdd) {
@@ -194,7 +203,7 @@ let customers = readJSONFile('./data','balance.json')
   
   
 module.exports = {
-    create,
+    createGame,
     deleteGame,
     update,
     searchById,
@@ -202,6 +211,7 @@ module.exports = {
     removeFromCart,
     viewCart,
     addCustomer,
+    showCustomers,
     removeCustomer,
     addBalance,
     checkout

@@ -3,7 +3,7 @@ const games = readJSONFile('./data', 'store.json');
 const cartFile = readJSONFile('./data','cart.json');
 const customers = readJSONFile('./data', 'balance.json');
 
-const {create,deleteGame,update, searchById,addToCart,removeFromCart,viewCart,addCustomer,removeCustomer,addBalance, checkout} = require("./src/storeController");
+const {createGame,deleteGame,update, searchById,addToCart,removeFromCart,viewCart,addCustomer,removeCustomer,showCustomers,addBalance, checkout} = require("./src/storeController");
 // create an alias called inform to store the console.log function
 // When providing user feedback in the terminal use `inform`
 // When developing/debugging use `console.log`
@@ -25,8 +25,8 @@ function run() {
     case 'showGames':
         print(action,games);
         break;
-    case 'create':
-        updatedStore = create(games, gamesInput,realesedInput,age_rating);
+    case 'createGame':
+        updatedStore = createGame(games, gamesInput,realesedInput,age_rating);
         writeToFile = true;
         break;
     case 'searchById':
@@ -62,6 +62,9 @@ function run() {
     case 'removeCustomer':
         updatedBalance = removeCustomer(customers, gamesInput); // balance.json file , customerID
         writeToBalance = true;
+        break;
+    case 'showCustomers':
+        showCustomers(customers)
         break;
     case 'addBalance':
         updatedBalance = addBalance(customers,gamesInput,realesedInput);// balance.json file, customerID, amount of $

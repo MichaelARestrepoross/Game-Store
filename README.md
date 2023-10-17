@@ -28,9 +28,9 @@ In this example you are calling the function adding a name, if it is realesed or
 
 ### Store functions list:
 ---------------------------
-1. create (gameName,Released,age_rating): Creates a game in the store with a user inputed Name, a random id 4 long, true or fasle for realesed and A age rating. 
+1. createGame (gameName,Released,age_rating): Creates a game in the store with a user inputed Name, a random id 4 long, true or fasle for realesed and A age rating. 
 
-to use: npm run "game Name here" true M
+to use: npm run createGame "game Name here" true M
 
 
 2. deleteGame (id): Searches through the store to remove the game from the store/ shelves. Will not remove games a customer already put in the cart.
@@ -49,6 +49,11 @@ to use: npm run update ABCD "NewGameName" true T
 to use: npm run searchById ABCD
 
 
+4. viewStore():
+
+
+
+
 ### Cart function list:
 -----------------------
 1. addToCart (gameName): Takes a game name searches the store for the game and adds it to your cart.
@@ -65,6 +70,7 @@ To use: npm run removeFromCart "gameName"
 
 To use: npm run showCart
 
+
 4. checkout(customers id): Takes a customer ID and buys all the items in the cart if you have the balance to do so.
 
 npm run checkout ABCD
@@ -76,11 +82,18 @@ npm run checkout ABCD
 
 To use: npm run checkout ABCD
 
+
 2. removeCustomer(customers, id)
 
 To use: npm run removeCustomer ABCD
 
-3. addBalance(CustomerId, amount of cash): Adds cash in cents to a specific customer useing their id and the cash amount in cents after.
+
+3. showCustomers(): Shows all users name, id, current balance and if they are a member or not
+
+To use: npm run showCustomers
+
+
+4. addBalance(CustomerId, amount of cash): Adds cash in cents to a specific customer useing their id and the cash amount in cents after.
 
 To use : npm run addBalance ABCD 5000
 to add $50.00 dollars

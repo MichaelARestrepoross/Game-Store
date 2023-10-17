@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "index": "node index.js showGames",
-    "create": "node index.js create",
+    "createGame": "node index.js createGame",
     "searchById": "node index.js searchById",
     "update": "node index.js update",
     "deleteGame": "node index.js deleteGame",
@@ -14,6 +14,7 @@
     "showCart": "node index.js showCart",
     "addCustomer": "node index.js addCustomer",
     "removeCustomer": "node index.js removeCustomer",
+    "showCustomers":"node index.js showCustomers",
     "addBalance": "node index.js addBalance",
     "checkout": "node index.js checkout"
   },
