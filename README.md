@@ -22,8 +22,10 @@ An example output : v20.5.1
 
 ## Script directions call:
 --------------------------
-use: npm run functionNamegoeshere : data
-example: npm run createGame "last of us 2" true T
+To use: npm run functionNameGoesHere : data
+Example:
+
+        npm run createGame "last of us 2" true T
 
 In this example you are calling the function adding a name, if it is realesed or not as true and T for the rating of the game. it will pull the price from a lybrary of 100 games or set it as defualt of $60.00 dollars.
 
@@ -33,6 +35,7 @@ In this example you are calling the function adding a name, if it is realesed or
 1. createGame (gameName,Released,age_rating): Creates a game in the store with a user inputed Name, a random id 4 long, true or fasle for realesed and A age rating. 
 
     To use:
+
         npm run createGame "game Name here" true M
 
 
@@ -40,24 +43,28 @@ In this example you are calling the function adding a name, if it is realesed or
 ABCD is example id for a game to delete below.
 
     To use:
+
         npm run deleteGame ABCD 
 
 
 3. update (id , newGame, releasedInput, age_rating): takes a id finds the game and updates it. With a diffrent Game name, true or false if it realesed and if the user wantes, a new age rating
 
     To use:
+
         npm run update ABCD "NewGameName" true T
 
 
 4. searchByID (id): Takes an id of a game in the store and prints out its information such as its id, name, rating and price
 
     To use:
+
         npm run searchById ABCD
 
 
 5. viewStore(): Shows all the games and the infomration in them such as their name, QR ID, the price, if they are realesed and the age rating
 
     To use:
+
         npm run viewStore
 
 
@@ -66,24 +73,28 @@ ABCD is example id for a game to delete below.
 1. addToCart (gameName): Takes a game name searches the store for the game and adds it to your cart.
 
     To use:
+
         npm run addToCart
 
 
 2. removeFromCart (gameName): Takes a game name from your cart and removes it.
 
     To use:
+
         npm run removeFromCart "gameName" 
 
 
 3. viewCart(): Takes all the games in your cart and shows you them with their prices and the total cost of your cart
 
     To use:
+
         npm run showCart
 
 
 4. checkout(customers id): Takes a customer ID and buys all the items in the cart if you have the balance to do so.
 
     To use:
+
         npm run checkout ABCD
 
 ### Customer functions:
@@ -92,24 +103,28 @@ ABCD is example id for a game to delete below.
 1. addCustomer(name,balance, member) : creates a customer with a name, a randomized 4 character ID , current balance and if they have a membership that gives them a 10 percent discount.
 
     To use:
+
         npm run checkout ABCD
 
 
 2. removeCustomer(customers, id)
 
     To use:
+
         npm run removeCustomer ABCD
 
 
 3. showCustomers(): Shows all users name, id, current balance and if they are a member or not
 
     To use:
+
         npm run showCustomers
 
 
 4. addBalance(CustomerId, amount of cash): Adds cash in cents to a specific customer useing their id and the cash amount in cents after.
 
     To use:
+
         npm run addBalance ABCD 5000
 
     to add $50.00 dollars to the id ABCD
