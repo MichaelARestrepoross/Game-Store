@@ -30,26 +30,26 @@ In this example you are calling the function adding a name, if it is realesed or
 ---------------------------
 1. createGame (gameName,Released,age_rating): Creates a game in the store with a user inputed Name, a random id 4 long, true or fasle for realesed and A age rating. 
 
-to use: npm run createGame "game Name here" true M
+To use: npm run createGame "game Name here" true M
 
 
 2. deleteGame (id): Searches through the store to remove the game from the store/ shelves. Will not remove games a customer already put in the cart.
 ABCD is example id for a game to delete below.
 
-to use: npm run deleteGame ABCD 
+To use: npm run deleteGame ABCD 
 
 
 3. update (id , newGame, releasedInput, age_rating): takes a id finds the game and updates it. With a diffrent Game name, true or false if it realesed and if the user wantes, a new age rating
 
-to use: npm run update ABCD "NewGameName" true T
+To use: npm run update ABCD "NewGameName" true T
 
 
 4. searchByID (id): Takes an id of a game in the store and prints out its information such as its id, name, rating and price
 
-to use: npm run searchById ABCD
+To use: npm run searchById ABCD
 
 
-4. viewStore():
+5. viewStore():
 
 
 
@@ -96,7 +96,5 @@ To use: npm run showCustomers
 4. addBalance(CustomerId, amount of cash): Adds cash in cents to a specific customer useing their id and the cash amount in cents after.
 
 To use : npm run addBalance ABCD 5000
-to add $50.00 dollars
-
-
+to add $50.00 dollars to the id ABCD
 

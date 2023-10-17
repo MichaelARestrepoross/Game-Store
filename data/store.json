@@ -39,20 +39,20 @@
     "qrID": "o4Wv",
     "price_in_cents": 2000,
     "released": false,
-    "age_rateing": "M"
+    "age_rating": "M"
   },
   {
     "name": "Red Dead Redemption 2",
     "qrID": "HQip",
     "price_in_cents": 3999,
     "released": true,
-    "age_rateing": "M"
+    "age_rating": "M"
   },
   {
     "name": "portal 3",
-    "qrID": "LWGs",
+    "qrID": "mnhn",
     "price_in_cents": 6000,
     "released": false,
-    "age_rateing": "M"
+    "age_rating": "M"
   }
 ]

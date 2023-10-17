@@ -10,12 +10,12 @@ let customers = readJSONFile('./data','balance.json')
 
   function createGame(store, gameName,Released,age_rat) {
     const game = {
-      name: gameName,
-      // Limit the id to be 4 characters long by placing a 4 as the argument for nanoid
-      qrID: nanoid(4),
-      price_in_cents: gamePrice[gameName] || 6000, // if the game you create does not exist in the resource object of animals, it will be given a default value of 6000
-      released:Released === "true"? true: false,
-      age_rateing: age_rat || "E"
+        name: gameName,
+        // Limit the id to be 4 characters long by placing a 4 as the argument for nanoid
+        qrID: nanoid(4),
+        price_in_cents: gamePrice[gameName] || 6000, // if the game you create does not exist in the resource object of animals, it will be given a default value of 6000
+        released:Released === "true"? true: false,
+        age_rating: age_rat || "E"
     };
     store.push(game);
     return store;
@@ -24,12 +24,12 @@ let customers = readJSONFile('./data','balance.json')
   function deleteGame(store, qrID2) {
     const index = store.findIndex((game) => game.qrID === qrID2.trim());
     if (index > -1) {
-      store.splice(index, 1);
-      print('game successfully removed from collection');
-      return store;
+        store.splice(index, 1);
+        print('game successfully removed from collection');
+        return store;
     } else {
         print('game not found. No action taken');
-      return store;
+        return store;
     }
   }
 
@@ -49,48 +49,51 @@ let customers = readJSONFile('./data','balance.json')
       print(store[index]);
       print('Game successfully updated in the store');
   
-      if (indexCart > -1) {
-        cart[indexCart].qrID = qrID2;
-        cart[indexCart].name = newGame;
-        cart[indexCart].price_in_cents = gamePrice[newGame] || 6000;
-        cart[indexCart].released = isReleased;
-        cart[indexCart].age_rating = age_rating || "E"
+      if(indexCart > -1) {
+            cart[indexCart].qrID = qrID2;
+            cart[indexCart].name = newGame;
+            cart[indexCart].price_in_cents = gamePrice[newGame] || 6000;
+            cart[indexCart].released = isReleased;
+            cart[indexCart].age_rating = age_rating || "E"
         
-        print(cart[indexCart]);
-        print('Game successfully updated in the cart');
+            print(cart[indexCart]);
+            print('Game successfully updated in the cart');
       }
   
-      return [store, cart];
-    } else {
-      print('Game not found in the store. No action taken');
-      return [store, cart];
+    return [store, cart];
+    }else {
+        print('Game not found in the store. No action taken');
+        return [store, cart];
     }
   }
-  
   
   function searchById(store, qrID2) {
     const game = store.find((game) => game.qrID === qrID2);
     return 'qrID:'+game.qrID + '  Name:' + game.name + '  Rating:'+ game.age_rating+ '  price: $' + game.price_in_cents/100 ;
   }
 
+  function viewStore(store){
+
+    }
+
   function addToCart(store, gameName) {
     const game = store.find((game) => game.name === gameName);
-    if (game) {
-      cart.push(game);
-      print(`Added ${game.name} to the cart.`);
+    if(game) {
+        cart.push(game);
+        print(`Added ${game.name} to the cart.`);
     }else {
-      print(`Game ${gameName} not found.`);
+        print(`Game ${gameName} not found.`);
     }
     return cart; 
   }
 
   function removeFromCart(cart, gameName) {
     const gameIndex = cart.findIndex((game) => game.name === gameName);
-    if (gameIndex !== -1) {
-      cart.splice(gameIndex, 1);
-      print(`Removed ${gameName} from the cart.`);
-    } else {
-      print(`Game ${gameName} not found in the cart.`);
+    if(gameIndex !== -1) {
+        cart.splice(gameIndex, 1);
+        print(`Removed ${gameName} from the cart.`);
+    }else {
+        print(`Game ${gameName} not found in the cart.`);
     }
     return cart;
   }
@@ -101,16 +104,17 @@ let customers = readJSONFile('./data','balance.json')
   }
   
   function viewCart(cart){
-    if (cart.length === 0) {
-      print("Your cart is empty.");
-    } else {
-      print("Cart Contents:");
-      cart.forEach((game) => {
-      print(`Name: ${game.name}, Price: $${game.price_in_cents / 100}`);
-      });
-      print(`Total Price: $${calculateTotalPrice(cart)}`);
+    if(cart.length === 0) {
+        print("Your cart is empty.");
+    }else {
+        print("Cart Contents:");
+    cart.forEach((game) => {
+        print(`Name: ${game.name}, Price: $${game.price_in_cents / 100}`);
+    });
+        print(`Total Price: $${calculateTotalPrice(cart)}`);
     }
   }
+
   function addCustomer(customers,name,balance, member){
     const customer = {
         name: name,
@@ -122,28 +126,30 @@ let customers = readJSONFile('./data','balance.json')
       customers.push(customer);
       return customers;
   }
+
   function removeCustomer(customers, id) {
     const index = customers.findIndex((customer) => customer.id === id);
-    if (index !== -1) {
-      customers.splice(index, 1); // Remove the customer object from the array
-    } else {
-      console.log("Customer not found.");
+    if(index !== -1) {
+        customers.splice(index, 1); // Remove the customer object from the array
+    }else {
+        print("Customer not found.");
     }
     return customers;
   }
+
   function showCustomers(customers) {
-    for (const customer of customers) {
-      print(`Name: ${customer.name}`);
-      print(`ID: ${customer.id}`);
-      print(`Balance: $${(customer.balanceInCents/100).toFixed(2)}`);
-      print(`Member: ${customer.member ? 'Yes' : 'No'}`);
-      print('-----------------------');
+    for(const customer of customers) {
+        print(`Name: ${customer.name}`);
+        print(`ID: ${customer.id}`);
+        print(`Balance: $${(customer.balanceInCents/100).toFixed(2)}`);
+        print(`Member: ${customer.member ? 'Yes' : 'No'}`);
+        print('-----------------------');
     }
   }
 
   function addBalance(customers, customerId, amountToAdd) {
     const customerToUpdate = customers.find((customer) => customer.id === customerId);
-    if (customerToUpdate) {
+    if(customerToUpdate) {
       customerToUpdate.balanceInCents += parseInt(amountToAdd);
     }
     return customers;
@@ -152,7 +158,7 @@ let customers = readJSONFile('./data','balance.json')
   function checkout(cart, customers, customerId) {
     const customerIndex = customers.findIndex((customer) => customer.id === customerId);
 
-    if (customerIndex !== -1) {
+    if(customerIndex !== -1) {
         const customer = customers[customerIndex];
         let updatedBalances = [...customers]; // create a copy of customers
         let updatedCustomer = { ...customer };
@@ -186,7 +192,7 @@ let customers = readJSONFile('./data','balance.json')
             checkoutSuccessful = true; // Update checkoutSuccessful flag
             updatedBalances[customerIndex] = updatedCustomer;
             updatedCart =[];
-        } else {
+        }else {
             print("Insufficient balance to complete the checkout.");
             checkoutSuccessful = false; // Set checkoutSuccessful to false
         }
@@ -194,7 +200,7 @@ let customers = readJSONFile('./data','balance.json')
         print("checkoutSuccessful: " + checkoutSuccessful); // Add this line to print the value of checkoutSuccessful
 
         return { updatedBalances, updatedCart, checkoutSuccessful };
-    } else {
+    }else {
         print("Customer not found.");
         return { updatedBalances, updatedCart: cart, checkoutSuccessful: false };
     }
@@ -207,6 +213,7 @@ module.exports = {
     deleteGame,
     update,
     searchById,
+    viewStore,
     addToCart,
     removeFromCart,
     viewCart,

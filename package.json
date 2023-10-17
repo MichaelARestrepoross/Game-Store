@@ -7,6 +7,7 @@
     "index": "node index.js showGames",
     "createGame": "node index.js createGame",
     "searchById": "node index.js searchById",
+    "viewStore": "node index.js viewStore",
     "update": "node index.js update",
     "deleteGame": "node index.js deleteGame",
     "removeFromCart": "node index.js removeFromCart",
