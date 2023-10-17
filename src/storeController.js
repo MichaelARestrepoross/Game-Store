@@ -73,7 +73,14 @@ let customers = readJSONFile('./data','balance.json')
   }
 
   function viewStore(store){
-
+    store.forEach(item => {
+        print(`Name: ${item.name}`);
+        print(`QR ID: ${item.qrID}`);
+        print(`Price : $${(item.price_in_cents/100).toFixed(2)}`);
+        print(`Released: ${item.released ? 'Yes' : 'No'}`);
+        print(`Age Rating: ${item.age_rating}`);
+        print('-----------------------');
+      });
     }
 
   function addToCart(store, gameName) {
