@@ -68,7 +68,7 @@ let customers = readJSONFile('./data','balance.json')
   }
   
   
-  function searchByID(store, qrID2) {
+  function searchById(store, qrID2) {
     const game = store.find((game) => game.qrID === qrID2);
     return 'qrID:'+game.qrID + '  Name:' + game.name + '  Rating:'+ game.age_rating+ '  price: $' + game.price_in_cents/100 ;
   }
@@ -197,7 +197,7 @@ module.exports = {
     create,
     deleteGame,
     update,
-    searchByID,
+    searchById,
     addToCart,
     removeFromCart,
     viewCart,

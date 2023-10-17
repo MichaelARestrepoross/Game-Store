@@ -6,7 +6,7 @@
   "scripts": {
     "index": "node index.js showGames",
     "create": "node index.js create",
-    "searchByID": "node index.js searchByID",
+    "searchById": "node index.js searchById",
     "update": "node index.js update",
     "deleteGame": "node index.js deleteGame",
     "removeFromCart": "node index.js removeFromCart",
