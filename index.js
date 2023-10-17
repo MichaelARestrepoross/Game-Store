@@ -60,29 +60,22 @@ function run() {
         writeToBalance = true;
         break;
     case 'removeCustomer':
-        updatedBalance = removeCustomer(customers, gamesInput); // customers file , customerID
+        updatedBalance = removeCustomer(customers, gamesInput); // balance.json file , customerID
         writeToBalance = true;
         break;
     case 'addBalance':
-        updatedBalance = addBalance(customers,gamesInput,realesedInput);// customers file, customerID, amount of $
+        updatedBalance = addBalance(customers,gamesInput,realesedInput);// balance.json file, customerID, amount of $
         writeToBalance = true;
         break;
     case 'checkout':
-        const { updatedCustomer, updatedCart, checkoutSuccessful } = checkout(cartFile, customers, gamesInput);
-        if(checkoutSuccessful){
-        const customerIndex = customers.findIndex((customer) => customer.id === gamesInput);
-            if(customerIndex !== -1) {
-                updatedBalance = [...customers];
-                updatedBalance[customerIndex] = updatedCustomer;
-                // console.log("Updated Customer:", updatedCustomer);
-                // console.log("Updated Cart:", updatedCart);
-                writeToBalance = true // Update the customer's balance
-                writeToCart =true; // Only update the cart if checkout was successful
-            }else {
-                print("Customer not found.");
-            }
-        }else {
-        print("Checkout was not successful.");
+        const { updatedBalances, updatedCart, checkoutSuccessful } = checkout(cartFile, customers, gamesInput);// ID
+        if (checkoutSuccessful) {
+            updatedBalance =updatedBalances;
+            writeToBalance = true // Update the customer's balance
+            writeToCart =true; // Only update the cart if checkout was successful
+
+        } else {
+        console.log("Checkout was not successful.");
         }
         break;
     default:

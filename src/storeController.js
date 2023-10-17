@@ -145,9 +145,10 @@ let customers = readJSONFile('./data','balance.json')
 
     if (customerIndex !== -1) {
         const customer = customers[customerIndex];
+        let updatedBalances = [...customers]; // create a copy of customers
         let updatedCustomer = { ...customer };
         let updatedCart = [...cart]; // Create a copy of the cart 
-        let discountedPrice = 0; 
+        let finalPrice = 0; 
         let checkoutSuccessful = false; 
 
         const totalPrice = calculateTotalPrice(cart);
@@ -162,18 +163,19 @@ let customers = readJSONFile('./data','balance.json')
         if (customer.member) {
             print("Customer has a membership and receives a 10% discount.");
             const discount = totalPrice * 0.10;
-            discountedPrice = totalPrice - discount; // Update discountedPrice
-            print(`Discounted Price: $${discountedPrice.toFixed(2)}`);
+            finalPrice = totalPrice - discount; // Update to a discountedPrice
+            print(`Discounted Price: $${finalPrice.toFixed(2)}`);
         }else{
-            discountedPrice = totalPrice;
+            finalPrice = totalPrice; // set it to original price
         }
         
-        if (customer.balanceInCents >= Math.round(discountedPrice * 100)) {
+        if (customer.balanceInCents >= Math.round(finalPrice * 100)) {
             // Customer has enough balance, process the checkout
-            customer.balanceInCents -= Math.round(discountedPrice * 100);
+            customer.balanceInCents -= Math.round(finalPrice * 100);
             print(`Checkout successful. Remaining balance: $${(customer.balanceInCents / 100).toFixed(2)}`);
             updatedCustomer = customer;
             checkoutSuccessful = true; // Update checkoutSuccessful flag
+            updatedBalances[customerIndex] = updatedCustomer;
             updatedCart =[];
         } else {
             print("Insufficient balance to complete the checkout.");
@@ -182,10 +184,10 @@ let customers = readJSONFile('./data','balance.json')
 
         print("checkoutSuccessful: " + checkoutSuccessful); // Add this line to print the value of checkoutSuccessful
 
-        return { updatedCustomer, updatedCart, checkoutSuccessful };
+        return { updatedBalances, updatedCart, checkoutSuccessful };
     } else {
         print("Customer not found.");
-        return { updatedCustomer: null, updatedCart: cart, checkoutSuccessful: false };
+        return { updatedBalances, updatedCart: cart, checkoutSuccessful: false };
     }
 }
 
